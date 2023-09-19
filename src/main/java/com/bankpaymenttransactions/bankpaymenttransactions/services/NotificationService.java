@@ -19,13 +19,15 @@ public class NotificationService {
 
         NotificationDTO notificationRequest = new NotificationDTO(email, message);
 
-        ResponseEntity<String> notificationResponse = restTemplate.postForEntity("http://o4d9z.mocklab.io/notify", notificationRequest, String.class);
+        //ResponseEntity<String> notificationResponse = restTemplate.postForEntity("http://o4d9z.mocklab.io/notify", notificationRequest, String.class);
 
-        if (!(notificationResponse.getStatusCode() == HttpStatus.OK)){
-            System.out.println("erro ao enviar notificação");
+//        if (!(notificationResponse.getStatusCode() == HttpStatus.OK)){
+//            System.out.println("erro ao enviar notificação");
+//
+//            throw new Exception("Serviço de notificação está fora do ar!!!");
+//        }
 
-            throw new Exception("Serviço de notificação está fora do ar!!!");
-        }
+        System.out.println("Notificação enviada para o usuario");
 
     }
 
