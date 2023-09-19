@@ -1,5 +1,6 @@
 package com.bankpaymenttransactions.bankpaymenttransactions.domain.user;
 
+import com.bankpaymenttransactions.bankpaymenttransactions.dtos.UserDTO;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -22,6 +23,19 @@ public class User {
     private BigDecimal balance;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User() {
+    }
+
+    public User(UserDTO data){
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.document = data.document();
+        this.balance = data.balance();
+        this.userType = data.userType();
+        this.password = data.password();
+        this.email = data.email();
+    }
 
     public User(Long id, String firstName, String lastName, String document, String email, String password, BigDecimal balance, UserType userType) {
         this.id = id;
@@ -97,6 +111,8 @@ public class User {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

@@ -2,12 +2,14 @@ package com.bankpaymenttransactions.bankpaymenttransactions.services;
 
 
 import com.bankpaymenttransactions.bankpaymenttransactions.domain.user.UserType;
+import com.bankpaymenttransactions.bankpaymenttransactions.dtos.UserDTO;
 import com.bankpaymenttransactions.bankpaymenttransactions.repositories.UserRepository;
 import com.bankpaymenttransactions.bankpaymenttransactions.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -28,8 +30,18 @@ public class UserService {
         return this.userRepository.findUserById(id).orElseThrow(() -> new Exception("Usuário não encontrado"));
     }
 
+    public User createUser(UserDTO data){
+        User newUser = new User(data);
+        this.saveUser(newUser);
+        return newUser;
+    }
+
     public void saveUser(User user){
         this.userRepository.save(user);
+    }
+
+    public List<User> getAllUsers(){
+        return this.userRepository.findAll();
     }
 
 }
